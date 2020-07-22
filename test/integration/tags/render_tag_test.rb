@@ -51,8 +51,8 @@ class RenderTagTest < Minitest::Test
         context  = Context.new('unsafe' => (+'unsafe').tap(&:taint))
         template.render(context)
 
-        assert_equal [Liquid::TaintedError], template.errors.map(&:class)
-        assert_equal 'snippet', template.errors.first.template_name
+        assert_equal [Liquid::TaintedError], context.errors.map(&:class)
+        assert_equal 'snippet', context.errors.first.template_name
       end
     end
 
